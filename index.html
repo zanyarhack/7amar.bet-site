@@ -1,66 +1,333 @@
 <!DOCTYPE html>
-<html lang="ckb">
+<html lang="ckb" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>7AMAR VIP - بەخێربێیت</title>
+    <title>7AMAR Bet - ماڵپەڕی فەرمی</title>
+    <!-- فۆنت و ستایلەکان -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            background: #0a0f1a;
-            color: #e5e9f0;
-            font-family: system-ui, -apple-system, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+        * {
             margin: 0;
-            padding: 20px;
-            text-align: center;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
         }
+        
+        body {
+            background: linear-gradient(135deg, #0c0f1a 0%, #1a1f2f 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* پس‌زمینەی جوڵاو */
+        .bg-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
         .container {
-            background: #1a2635;
-            padding: 40px 20px;
-            border-radius: 60px;
-            border: 2px solid #d4af37;
-            box-shadow: 0 0 40px #d4af3740;
             width: 100%;
             max-width: 500px;
+            background: rgba(20, 25, 40, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 48px;
+            padding: 40px 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(212, 175, 55, 0.1) inset;
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 0.8s ease;
         }
-        h1 {
-            color: #d4af37;
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* تاج و لوگوی 7AMAR */
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .crown {
+            font-size: 60px;
+            color: #f5c84e;
+            filter: drop-shadow(0 0 20px #f5c84e);
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px #f5c84e); }
+            to { filter: drop-shadow(0 0 30px #f5c84e); }
+        }
+        
+        .logo h1 {
             font-size: 42px;
-            margin-bottom: 20px;
+            background: linear-gradient(to left, #f5e7b2, #d4af37, #c5a028);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            margin: 10px 0 5px;
+            letter-spacing: 2px;
         }
-        p {
-            font-size: 22px;
+        
+        .logo p {
+            color: #a0b5cc;
+            font-size: 18px;
+        }
+        
+        /* کارتی پێشوازی */
+        .welcome-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 36px;
+            padding: 30px 20px;
+            margin-bottom: 30px;
+            border: 1px solid #d4af3740;
+            text-align: center;
+        }
+        
+        .welcome-card h2 {
+            font-size: 32px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        
+        .welcome-card h2 span {
+            color: #d4af37;
+            display: block;
+            font-size: 28px;
+            margin-top: 5px;
+        }
+        
+        .welcome-card .message {
+            font-size: 20px;
+            color: #cbd5e6;
             margin: 20px 0;
             line-height: 1.6;
         }
-        .gold {
-            color: #f5c84e;
-            font-weight: bold;
-        }
-        .btn {
-            background: #d4af37;
-            color: #0a0f1a;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 60px;
-            font-size: 20px;
-            font-weight: bold;
-            margin-top: 20px;
+        
+        .badge {
             display: inline-block;
+            background: #1e2f42;
+            padding: 10px 25px;
+            border-radius: 60px;
+            color: #f5c84e;
+            font-weight: 600;
+            border: 1px solid #d4af37;
+            margin: 10px 0;
+        }
+        
+        /* فۆرمی تۆمارکردن */
+        .register-section {
+            margin-top: 30px;
+        }
+        
+        .register-section h3 {
+            font-size: 24px;
+            color: #f5c84e;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #b0c4de;
+            font-size: 16px;
+        }
+        
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            background: #1e2a3a;
+            border-radius: 60px;
+            border: 1px solid #3f556a;
+            transition: 0.2s;
+        }
+        
+        .input-wrapper:focus-within {
+            border-color: #d4af37;
+            box-shadow: 0 0 0 2px #d4af3740;
+        }
+        
+        .input-wrapper i {
+            width: 50px;
+            text-align: center;
+            color: #d4af37;
+            font-size: 18px;
+        }
+        
+        .input-wrapper input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 18px 10px 18px 0;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .input-wrapper input::placeholder {
+            color: #6a7f9a;
+        }
+        
+        .btn-register {
+            width: 100%;
+            background: linear-gradient(145deg, #d4af37, #b48c2a);
+            border: none;
+            padding: 18px;
+            border-radius: 60px;
+            color: #0c121c;
+            font-weight: 700;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin: 20px 0 15px;
+            box-shadow: 0 10px 25px #d4af3760;
+        }
+        
+        .btn-register:active {
+            transform: scale(0.97);
+        }
+        
+        .login-link {
+            text-align: center;
+            color: #9aafc9;
+            font-size: 16px;
+        }
+        
+        .login-link a {
+            color: #f5c84e;
             text-decoration: none;
+            font-weight: 600;
+        }
+        
+        /* پێشنیاری کریپتۆ */
+        .note {
+            margin-top: 30px;
+            padding: 20px;
+            background: #1b2638;
+            border-radius: 36px;
+            font-size: 14px;
+            color: #b0c9e5;
+            text-align: center;
+            border: 1px dashed #d4af37;
+        }
+        
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #5e7492;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
+    <div class="bg-pattern"></div>
+    
     <div class="container">
-        <h1>👑 7AMAR VIP</h1>
-        <p>بەخێربێیت ئەی پاشا</p>
-        <p class="gold">✅ سایتەکە بە سەرکەوتوویی کار دەکات</p>
-        <p>✨ ئێستا دەتوانیت پارە داخڵ بکەیت ✨</p>
-        <a href="#" class="btn">داخڵکردنی پارە</a>
+        <!-- لوگۆ و تاج -->
+        <div class="logo">
+            <i class="fas fa-crown crown"></i>
+            <h1>7AMAR BET</h1>
+            <p>ماڵپەڕی فەرمی پێشبینی و کریپتۆ</p>
+        </div>
+        
+        <!-- کارتی پێشوازی -->
+        <div class="welcome-card">
+            <h2>
+                بەخێربێیت
+                <span>ئەی پاشا</span>
+            </h2>
+            <div class="badge">
+                <i class="fas fa-check-circle"></i> سایت بە سەرکەوتوویی کار دەکات
+            </div>
+            <p class="message">
+                <i class="fas fa-star gold"></i> ئێستا دەتوانیت پارە داخڵ بکەیت و لە یارییەکان بەشداری بکەیت
+            </p>
+        </div>
+        
+        <!-- بەشی تۆمارکردن -->
+        <div class="register-section">
+            <h3>
+                <i class="fas fa-user-plus"></i>
+                دروستکردنی هەژمار
+            </h3>
+            
+            <form id="registerForm" onsubmit="event.preventDefault(); alert('بە سەرکەوتوویی تۆمار بوویت! (ئەمە تەنها تاقیکردنەوەیە)');">
+                <div class="input-group">
+                    <label>ئیمەیڵ</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="example@email.com" required>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>پاسۆرد</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="********" required>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>دووبارە پاسۆرد</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="********" required>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-register">
+                    <i class="fas fa-check-circle"></i> تۆمارکردن
+                </button>
+                
+                <div class="login-link">
+                    هەژمارت هەیە؟ <a href="#">بچۆ ژوورەوە</a>
+                </div>
+            </form>
+        </div>
+        
+        <!-- تێبینی کریپتۆ -->
+        <div class="note">
+            <i class="fas fa-bitcoin gold"></i>
+            دوای تۆمارکردن، دەتوانیت USDT، BTC و دراوە دیجیتاڵییەکان داخڵ بکەیت.
+            <br>
+            <span style="color:#d4af37;">پشتگیری 24/7</span>
+        </div>
+        
+        <div class="footer">
+            © 2025 7AMAR BET - هەموو مافەکان پارێزراون
+        </div>
     </div>
+    
+    <script>
+        // تەنها بۆ جوانکاری - پەیامی خێرهاتن
+        console.log('7AMAR BET - بەخێربێیت ئەی پاشا');
+    </script>
 </body>
 </html>
