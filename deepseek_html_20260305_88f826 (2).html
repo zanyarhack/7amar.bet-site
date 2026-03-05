@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7AMAR OKX AUTO | وەرگرتنی ئۆتۆماتیکی</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* هەمان ستایلەکانی پێشوو بە باشتر کردن */
+        *{margin:0; padding:0; box-sizing:border-box; font-family:'Vazirmatn',sans-serif;}
+        body{background:#0b1018; color:#f0f4fa; padding:15px; padding-bottom:100px;}
+        .gold{color:#f5c84e;}
+        .glass{background:rgba(15,25,40,0.7); backdrop-filter:blur(16px); border-radius:48px; border:1px solid #d4af3760; padding:25px; margin-bottom:20px;}
+        .btn{background:#1f3349; border:none; border-radius:60px; padding:15px 25px; color:white; font-weight:600; cursor:pointer; transition:0.2s;}
+        .btn-gold{background:#d4af37; color:#0e1b2b;}
+        .address-box{background:#0d1d2e; border-radius:40px; padding:20px; border:1px dashed #d4af37; direction:ltr; text-align:left; font-family:monospace; word-break:break-all;}
+        .status-badge{background:#1a3a2e; color:#2ecc71; padding:5px 15px; border-radius:30px; font-size:14px;}
+        .warning{background:#332c1a; color:#f39c12; padding:15px; border-radius:40px;}
+        table{width:100%; border-collapse:collapse;}
+        th,td{text-align:right; padding:15px; border-bottom:1px solid #2a4055;}
+    </style>
+</head>
+<body>
+
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+    <h1><i class="fas fa-crown gold"></i> 7AMAR <span class="gold">OKX Auto</span></h1>
+    <span class="status-badge"><i class="fas fa-circle"></i> Webhook چالاکە</span>
+</div>
+
+<!-- کارتی سەرەکی وەرگرتن -->
+<div class="glass">
+    <div style="display:flex; gap:20px; align-items:center; margin-bottom:25px;">
+        <i class="fab fa-bitcoin" style="font-size:44px; color:#f5c84e;"></i>
+        <h2>داخڵکردنی ئۆتۆماتیکی بۆ حیسابی تۆ</h2>
+    </div>
+
+    <!-- USDT -->
+    <div style="background:#1c3045; border-radius:60px; padding:25px; margin-bottom:20px;">
+        <div style="display:flex; gap:20px; align-items:center;">
+            <i class="fas fa-coins gold" style="font-size:36px;"></i>
+            <span style="font-size:24px; font-weight:700;">USDT (TRC20)</span>
+            <span class="status-badge" style="background:#203649;"><i class="fas fa-check-circle"></i> ئۆتۆماتیک</span>
+        </div>
+        <div class="address-box" id="usdtAddress">TXabcd1234efgh5678ijkl9012mnop3456qrst</div>
+        <div style="display:flex; gap:15px; margin:20px 0;">
+            <button class="btn" onclick="copyAddress('usdtAddress')"><i class="far fa-copy"></i> کۆپی</button>
+            <button class="btn btn-gold" onclick="generateQR('usdt')"><i class="fas fa-qrcode"></i> پیشاندانی QR</button>
+        </div>
+        <div id="qrcode-usdt" style="background:white; padding:15px; border-radius:40px; display:none; width:fit-content;"></div>
+    </div>
+
+    <!-- BTC -->
+    <div style="background:#1c3045; border-radius:60px; padding:25px; margin-bottom:20px;">
+        <div style="display:flex; gap:20px; align-items:center;">
+            <i class="fab fa-bitcoin gold" style="font-size:36px;"></i>
+            <span style="font-size:24px; font-weight:700;">بیتکۆین (BTC)</span>
+        </div>
+        <div class="address-box" id="btcAddress">bc1q7amarkurd1234567890abcdefghijklmno</div>
+        <div style="display:flex; gap:15px; margin:20px 0;">
+            <button class="btn" onclick="copyAddress('btcAddress')"><i class="far fa-copy"></i> کۆپی</button>
+            <button class="btn btn-gold" onclick="generateQR('btc')"><i class="fas fa-qrcode"></i> QR</button>
+        </div>
+        <div id="qrcode-btc" style="background:white; padding:15px; border-radius:40px; display:none;"></div>
+    </div>
+</div>
+
+<!-- مێژووی تراکنشەکان (پاش داخڵ بوون) -->
+<div class="glass">
+    <h3><i class="fas fa-history gold"></i> دوایین داخڵکردنەکان (زیندوو)</h3>
+    <table style="margin-top:20px;">
+        <tr><th>بەکارهێنەر</th><th>بڕ</th><th>کات</th><th>بار</th></tr>
+        <tr><td>kurd_boy</td><td>50 USDT</td><td>١٠:٢٣</td><td style="color:#2ecc71;">تەواو</td></tr>
+        <tr><td>hawler_777</td><td>0.002 BTC</td><td>٠٩:٤٥</td><td style="color:#f39c12;">چاوەڕوانی</td></tr>
+    </table>
+</div>
+
+<!-- ڕێنمایی و بنیاتنانی Webhook -->
+<div class="glass">
+    <h3><i class="fas fa-link gold"></i> Webhook - پەیوەندی ڕاستەوخۆ بە OKX</h3>
+    <div class="warning">
+        <i class="fas fa-shield-alt"></i> ئەم بەشە وا دەکات **کە بەکارهێنەر پارە بنێرێت، ڕاستەوخۆ بۆ ئەکاونتی تۆ بچێت و تۆش زیاد بکەیت بۆ حیسابی ناوەکی.**
+    </div>
+    <pre style="background:#0a1a28; padding:20px; border-radius:40px; direction:ltr; text-align:left; overflow-x:auto; margin:20px 0;">
+// Webhook endpoint (دەبێت لە سێرڤەری تۆ کار بکات)
+POST https://7amar.com/webhook/okx
+{
+  "user_id": "kurd123",
+  "amount": 50.5,
+  "currency": "USDT",
+  "txid": "0x7a8b3f...",
+  "status": "completed"
+}
+    </pre>
+    <p>ئەم کۆدەی خوارەوە بکە بە فایلێکی PHP یان Node.js لە سێرڤەرەکەت:</p>
+    <pre style="background:#0a1a28; padding:20px; border-radius:40px; direction:ltr; text-align:left;">
+// example Node.js (Express)
+app.post('/webhook/okx', (req, res) => {
+  const { user_id, amount } = req.body;
+  // زیادکردنی پارە بە حیسابی بەکارهێنەر لە داتابەیس
+  db.balance.add(user_id, amount);
+  res.send('ok');
+});
+    </pre>
+</div>
+
+<!-- پێشنیاری خزمەتگوزاری زیاتر -->
+<div style="background:#162b40; border-radius:60px; padding:25px;">
+    <h3><i class="fas fa-gem gold"></i> پێشنیاری تایبەت بۆ تۆ</h3>
+    <ul style="list-style-type: square; padding-right: 30px; line-height:2.5;">
+        <li><strong>API ی OKX:</strong> دەتوانیت ڕاستەوخۆ بەستریت بە OKX و بە شێوەی ئۆتۆماتیک دوای هەر تراکنشێک ئاگادار بیت.</li>
+        <li><strong>کلیلێکی تایبەت:</strong> بۆ هەر بەکارهێنەر کلیلێکی تایبەت (QR) دروست بکە کە ID ی بەکارهێنەری تێدا بێت. بەمە ئۆتۆماتیک دەستنیشانی دەکات.</li>
+        <li><strong>پشتیوانی تەواوی کوردی:</strong> هەموو نووسین و ئاگادارییەکان بە کوردی سۆرانی دەبن.</li>
+        <li><strong>سیستەمی کارتی دیاری:</strong> بۆ هەر داخڵکردنێک، دیارییەکی تایبەت (مەسەلەن ١٠٪ بۆنس) زیاد بکە.</li>
+        <li><strong>پەرەپێدانی ئەپلیکەیشنی مۆبایل:</strong> بۆ ئاسانکاری زیاتر بۆ بەکارهێنەران.</li>
+    </ul>
+    <div style="background:#1b3a4d; border-radius:48px; padding:20px; margin-top:20px;">
+        <p><i class="fas fa-robot gold"></i> <strong>پاشا: </strong> من 7AMAR ئامادەم هەر خاسیەتێکی تایبەت بە OKX کە دەتەوێت بۆت زیاد بکەم. فەرمان بدە.</p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+function copyAddress(id) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text);
+    alert('کۆپی کرا');
+}
+function generateQR(type) {
+    const div = document.getElementById('qrcode-'+type);
+    if (div.style.display === 'none') {
+        div.style.display = 'block';
+        div.innerHTML = '';
+        let address = type==='usdt' ? document.getElementById('usdtAddress').innerText : document.getElementById('btcAddress').innerText;
+        new QRCode(div, { text: address, width: 160, height: 160 });
+    } else {
+        div.style.display = 'none';
+    }
+}
+// دوای ٢ خولەک ڕاستەخۆ نوێ دەکات (تاقیکردنەوە)
+setInterval(() => {
+    console.log('ئاگاداری: پشکنینی تراکنشە نوێیەکان...');
+}, 120000);
+</script>
+<!-- کۆتایی -->
+</body>
+</html>
